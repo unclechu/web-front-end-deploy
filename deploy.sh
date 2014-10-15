@@ -146,6 +146,12 @@ if [ -n "$YOUR_SUBJECT" ]; then
 	source "$YOUR_SUBJECT"
 	unset YOUR_SUBJECT
 else
+	if [ ! -d ./_deploy ]; then
+		info_err_clean 'Tasks directory "_deploy"' \
+			'should be exists to start deploying!'
+		exit 1
+	fi
+
 	tasks=$(find -L ./_deploy -maxdepth 1 -type f | grep '\.sh$' | sort | tr '\n' ':')
 
 	while [ -n "$tasks" ]; do
