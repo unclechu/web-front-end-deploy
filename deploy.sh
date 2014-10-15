@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Version: r1
+# Version: r2
 # Author: Viacheslav Lotsmanov
 # License: GNU/GPLv3 (https://github.com/unclechu/web-front-end-deploy/blob/master/LICENSE)
 #
@@ -146,7 +146,7 @@ if [ -n "$YOUR_SUBJECT" ]; then
 	source "$YOUR_SUBJECT"
 	unset YOUR_SUBJECT
 else
-	tasks=$(find ./_deploy -maxdepth 1 -type f | grep '\.sh$' | sort | tr '\n' ':')
+	tasks=$(find -L ./_deploy -maxdepth 1 -type f | grep '\.sh$' | sort | tr '\n' ':')
 
 	while [ -n "$tasks" ]; do
 		task="${tasks#*:}"
